@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍽️ Recipe Recommendation System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ Recipe Finder</h1>
+        
+        <div class="search-section">
+            <h2>Find Your Recipe</h2>
+            <p>💡 Search for any ingredient and let AI generate recipes if not found in our database!</p>
+            <div class="search-options">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="e.g., chicken, pasta, mushrooms..." 
+                    autocomplete="off">
+                <select id="searchType">
+                    <option value="ingredient">🥘 Ingredient</option>
+                    <option value="category">📂 Category</option>
+                </select>
+                <button onclick="searchRecipes()">🔍 Search</button>
+            </div>
+        </div>
+
+        <div class="recipes-section">
+            <h2>📚 Recipes</h2>
+            <div id="recipeList">
+                <div class="loading">Loading recipes...</div>
+            </div>
+        </div>
+
+        <!-- Feedback Modal -->
+        <div id="feedbackModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeFeedbackModal()">&times;</span>
+                <h2>💬 Share Your Feedback</h2>
+                <form id="feedbackForm">
+                    <input type="hidden" id="feedbackRecipeId">
+                    <input type="hidden" id="feedbackRecipeName">
+                    
+                    <label for="feedbackRating">⭐ Rating (1-5 stars):</label>
+                    <div class="rating-selector">
+                        <span class="star" onclick="setRating(1)">⭐</span>
+                        <span class="star" onclick="setRating(2)">⭐</span>
+                        <span class="star" onclick="setRating(3)">⭐</span>
+                        <span class="star" onclick="setRating(4)">⭐</span>
+                        <span class="star" onclick="setRating(5)">⭐</span>
+                    </div>
+                    <input type="hidden" id="feedbackRating" value="0">
+                    <p id="ratingDisplay" style="text-align: center; color: #667eea; font-weight: bold;">Please select a rating</p>
+                    
+                    <label for="feedbackCategory">📂 Issue Category:</label>
+                    <select id="feedbackCategory" required>
+                        <option value="">-- Select Category --</option>
+                        <option value="taste">Taste/Flavor</option>
+                        <option value="difficulty">Difficulty Level</option>
+                        <option value="clarity">Instructions Clarity</option>
+                        <option value="ingredients">Ingredients</option>
+                        <option value="cooking_time">Cooking Time</option>
+                        <option value="general">General Feedback</option>
+                    </select>
+                    
+                    <label for="feedbackComment">💭 Your Comment:</label>
+                    <textarea id="feedbackComment" placeholder="What did you think about this recipe?" required></textarea>
+                    
+                    <label for="feedbackSuggestions">💡 Suggested Changes (Optional):</label>
+                    <textarea id="feedbackSuggestions" placeholder="How could we improve this recipe?"></textarea>
+                    
+                    <button type="submit" class="feedback-submit">📤 Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Recipe Modal -->
+        <div id="addRecipeModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Recipe</h2>
+                <form id="addRecipeForm">
+                    <input type="text" id="recipeName" placeholder="Recipe Name" required>
+                    <textarea id="ingredients" placeholder="Ingredients (one per line)" required></textarea>
+                    <textarea id="instructions" placeholder="Instructions" required></textarea>
+                    <input type="number" id="cookingTime" placeholder="Cooking Time (minutes)" required>
+                    <select id="difficulty" required>
+                        <option value="">Select Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                    <textarea id="categories" placeholder="Categories (one per line)" required></textarea>
+                    <button type="submit">➕ Add Recipe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
